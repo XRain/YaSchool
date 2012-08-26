@@ -1,2 +1,2 @@
 #!/bin/bash
-node ./render.js
+node ./renderer.js
