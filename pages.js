@@ -8,7 +8,7 @@ function getPages() {
                     class: 'bl-head',
                     type:'head',
                     hasCSS: true,
-                    hasJS: false
+                    hasJS: true
                 },
                 {
                     name: 'container',

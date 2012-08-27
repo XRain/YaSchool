@@ -1,0 +1,8 @@
+-var cssFileName = 'assets/' + locals.name + '.css';
+-var jsFileName = 'assets/' + locals.name + '.js';
+
+
+head
+  title= "Main"
+  script(type='text/javascript', src="#{jsFileName}")
+  link(rel="stylesheet", href="#{cssFileName}")

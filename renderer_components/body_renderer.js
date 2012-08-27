@@ -1,35 +1,40 @@
 var fs = require('fs');
 var jade = require('jade');
 var blocksPath = './blocks/';
+var debug;
 
 
-
-function processTree(bem_tree_node) {
-    var pageContent = '';
+function processTree(bem_tree_node, globalDebug) {
+    debug = globalDebug;
+    (!!debug)?console.log('Compiling body content from templates') : null;
+    var page = '';
     for (bem_entry in bem_tree_node) {
         var currentBlock = bem_tree_node[bem_entry];
-        parseTreeEntry(currentBlock, null);
+        parseTreeEntry(currentBlock, null, returnPage, debug);
     }
+
+    function returnPage(pageContent) {
+        page = pageContent;
+    }
+    return page;
 }
 
-function parseTreeEntry(currentBlock, parent){
+function parseTreeEntry(currentBlock, parent, callback, debug){
     currentBlock.parent = parent;
     if(currentBlock.hasOwnProperty('name') && currentBlock.type == 'block') {
-        console.log('processing bem entry: ' + currentBlock.name);
+        (!!debug)?console.log('processing block: ' + currentBlock.name) : null;
         currentBlock.childsContent = '';
         //callback function
         currentBlock.compileSelf = function(childContent, parent) {
             currentBlock.childsContent += childContent;
-            console.log('Compiling block: ' + currentBlock.name);
-            console.log('Got child content: ' + childContent);
+            (!!debug)?console.log('Compiling block: ' + currentBlock.name) : null;
             currentBlock.tempContent = childContent;
             currentBlock.compiledContent = renderTemplate(currentBlock, currentBlock.childsContent, null);
-            console.log('Compiled content: ' + currentBlock.compiledContent);
             if(!!currentBlock.parent) {
                 currentBlock.parent.compileSelf(currentBlock.compiledContent);
             }
             else {
-                pageContent = currentBlock.compiledContent;
+                callback(currentBlock.compiledContent);
             }
         }
 
@@ -37,7 +42,7 @@ function parseTreeEntry(currentBlock, parent){
         if (!!currentBlock.content) {
             var childContent = '';
             for (bem_entry in currentBlock.content) {
-                childContent = parseTreeEntry(currentBlock.content[bem_entry], currentBlock);
+                childContent = parseTreeEntry(currentBlock.content[bem_entry], currentBlock, callback, debug);
             }
         }
         else {
@@ -47,7 +52,7 @@ function parseTreeEntry(currentBlock, parent){
 };
 
 function renderTemplate(block, childContent, options, callback) {
-    console.log('rendering template for: ' + block.name);
+    (!!debug)?console.log('rendering template for: ' + block.name) : null;
     var jadeData = {name: block.name, content: childContent, options: options, class: block.class}
     var templateFile  = fs.readFileSync(blocksPath + block.name + '/' + block.name + '.jade', 'utf-8');
     var template = jade.compile(templateFile);

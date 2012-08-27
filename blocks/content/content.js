@@ -1,1 +1,1 @@
-undefined
+console.log('script "content.js loaded successfully"');

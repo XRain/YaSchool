@@ -3,20 +3,24 @@ var fs_processor = require('./renderer_components/fs_processor');
 var head_renderer = require('./renderer_components/head_renderer');
 var body_renderer = require('./renderer_components/body_renderer');
 var blocksPath = './blocks/';
-
+var debug = true;
 
 function compile() {
     for (page in pages) {
-        var pageHTML = '', pageCSS, pageJS;
-        fs_processor.processTree(pages[page].bem_tree, blocksPath);
-        //pageHTML += head_renderer.processTree(page.bem_tree);
-        pageHTML += body_renderer.processTree(pages[page].bem_tree);
-        console.log('Got rendered page: ' + pageHTML);
+        var currentPageHTML = '';
+        var currentPage = pages[page];
+        (!!debug)?console.log('Compiling page: ' + currentPage.pageName) : null;
+
+        fs_processor.processTree(currentPage.bem_tree, blocksPath);
+        currentPageHTML += head_renderer.processTree(currentPage.bem_tree, currentPage.pageName, debug);
+        currentPageHTML += body_renderer.processTree(currentPage.bem_tree, debug);
+        fs_processor.writeTo('./pages/', currentPage.pageName + '.html', currentPageHTML);
     }
-    var indexPageContent = '';
 }
 
+compile();
 
+/*
 try {
     compile();
 }
@@ -25,3 +29,4 @@ catch(err) {
         console.log(err)
     }
 }
+    */
