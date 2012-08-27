@@ -1,1 +1,1 @@
-console.log('script "menu.js loaded successfully"');
+console.log("script menu.jsloaded successfully");
