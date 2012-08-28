@@ -1,4 +1,23 @@
-var questionsContent = generateQuestions();
+/*
+    В этом файле задается БЭМ-структура документа,
+    по которой будет выполнена сначала генерация
+    файловой структуры блоков в папке /blocks, а затем -
+    обход всех найденных в структуре блоков, и коммпиляция их клиентского
+    JS и CSS
+
+    API:
+        pages[head, блок, блок...]
+    где блок - структура вида
+    {
+        name: 'Имя блока',
+        type: block  //тип элемента дерева, пока реализованы только блоки
+        hasCSS: true, //Если флаг установлен - будет создан и подключен CSS-файл из папки блока
+        hasJS: true,   //То же самое с клиентскими js-файлами
+        content: [],   //Массив, в который можно добавлять блоки-потомки
+        options: {}    //Данные, которые будут переданы jade-шаблону блока при компиляции
+    }
+ */
+
 
 function getPages() {
     var pages = [
@@ -31,7 +50,7 @@ function getPages() {
                             type: 'block',
                             hasCSS: true,
                             hasJS: true,
-                            content: questionsContent
+                            content: generateQuestions()
                         }
                     ]
                 },
@@ -91,21 +110,20 @@ function generateQuestions() {
         {q: 'Е-mail', a: 'емайл@уамршра'},
         {q: 'Телефон', a: '984654156'}
     ];
-    function compileQuestion(question) {
+    function compileQuestion(question, position) {
         this.name = 'question';
         this.class = 'bl-question',
         this.type = 'block',
         this.hasCSS = true,
         this.hasJS = true,
         this.options = {
-            id: '',
-            question: [{q: question.q, a: question.a}]
+            id: 'question' + (+i + 1),
+            question: {q: question.q, a: question.a}
         };
-
     }
     for (i in questions) {
-        var compiledQuestion = new compileQuestion(questions[i]);
-        compiledQuestion.options.id = compiledQuestion.name + (i + 1);
+
+        var compiledQuestion = new compileQuestion(questions[i], i);
         compiledQuestions.push(compiledQuestion);
     }
     return compiledQuestions;

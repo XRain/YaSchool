@@ -1,16 +1,24 @@
+/*
+    Компонент собирает клиентский javascript и css в один файл,
+    пишет результат на диск и генерирует head для страницы из jade-шаблона
+ */
+
 var fs = require('fs');
 var jade = require('jade');
 var ams = require('ams');
 var pageHead = '';
 var debug = false;
+
+//В эти массивы пишутся имена скриптов и CSS-файлов для каждого найденного блока
 var userScripts = [];
 var userCssFiles = [];
+
 var blocksPath = './blocks/';
 var pageName = '';
 
 
 
-
+//запуск обхода дерева
 function processTree(bem_tree_node, page, globalDebug) {
     pageName = page;
     debug = globalDebug;
@@ -22,7 +30,9 @@ function processTree(bem_tree_node, page, globalDebug) {
     var content = compileContent(userScripts, userCssFiles);
     return content;
 }
-
+/*
+    Функция для добавления найденного файла в массив (если его там еще нет)
+ */
 function addFile(name, type){
     var filePath = blocksPath + name + '/' + name + '.' + type;
     switch(type) {
@@ -37,7 +47,6 @@ function addFile(name, type){
             }
             break;
     }
-
     function checkFileExists(filePath, list) {
         var fileAlreadyAdded = false;
         for (i in list) {
@@ -48,7 +57,9 @@ function addFile(name, type){
         return fileAlreadyAdded;
     }
 }
-
+/*
+    компиляция и запись клиентских файлов
+ */
 function compileContent(scripts, css) {
     compileAssets();
     pageHead = renderHead();
@@ -84,7 +95,9 @@ function compileContent(scripts, css) {
     }
 
 }
-
+/*
+    рекурсивная функция, добавляющая клиентские файлы в очередь на обработку
+ */
 function parseTreeEntry(currentBlock) {
     if(currentBlock.hasOwnProperty('name') && currentBlock.type == 'block') {
         //(!!debug)?console.log('processing head') : null;
@@ -101,7 +114,7 @@ function parseTreeEntry(currentBlock) {
         }
     }
 }
-
+//рендеринг jade-шаблона
 function renderHead() {
     (!!debug)?console.log('rendering head template') : null;
     var jadeData = {name: pageName};

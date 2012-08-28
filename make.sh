@@ -1,2 +1,2 @@
 #!/bin/bash
-nodemon --watch ./blocks ./renderer.js
+node ./renderer.js
