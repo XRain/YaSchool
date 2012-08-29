@@ -4,97 +4,39 @@
     файловой структуры блоков в папке /blocks, а затем -
     обход всех найденных в структуре блоков, и коммпиляция их клиентского
     JS и CSS
-
-    API:
-        pages[head, блок, блок...]
-    где блок - структура вида
-    {
-        name: 'Имя блока',
-        type: block  //тип элемента дерева, пока реализованы только блоки
-        hasCSS: true, //Если флаг установлен - будет создан и подключен CSS-файл из папки блока
-        hasJS: true,   //То же самое с клиентскими js-файлами
-        content: [],   //Массив, в который можно добавлять блоки-потомки
-        options: {}    //Данные, которые будут переданы jade-шаблону блока при компиляции
-    }
  */
 
 
+var Block = function(name, hasCSS, hasJS, options, content) {
+    this.type = 'block';
+
+    this.name = name;
+    this.class =  'bl-' + name;
+    this.hasCSS = !!hasCSS;
+    this.hasJS = !!hasJS;
+    this.options = options;
+    if(!!content) {
+        this.content = content;
+    }
+    return;
+}
+
+var Head = function() {
+    this.name = 'head';
+    this.type ='head';
+}
+//описываем структуру страницы
 function getPages() {
     var pages = [
         {
             pageName: 'index',
             bem_tree: [
-                {
-                    name: 'head',
-                    type:'head',
-                    hasCSS: true,
-                    hasJS: true
-                },
-                {
-                    name: 'container',
-                    class: 'bl-container',
-                    type:'block',
-                    hasCSS: true,
-                    hasJS: false,
-                    content: [
-                        {
-                            name: 'menu',
-                            class: 'bl-menu',
-                            type: 'block',
-                            hasCSS: true,
-                            hasJS: true
-                        },
-                        {
-                            name: 'content',
-                            class: 'bl-content',
-                            type: 'block',
-                            hasCSS: true,
-                            hasJS: true,
-                            content: generateQuestions()
-                        }
-                    ]
-                },
-                {
-                    name: 'footer',
-                    class: 'bl-footer',
-                    type: 'footer',
-                    hasCSS: true,
-                    hasJS: false
-                }
+                new Head(),
+                new Block('container', 1, 0, {}, [
+                        new Block('menu', 1, 1, {}),
+                        new Block('content', 1, 1, {}, generateQuestions())
+                ])
             ]
-        },
-        {
-            pageName: 'test',
-            bem_tree: [{
-                name: 'head',
-                class: 'bl-head',
-                type:'head',
-                hasCSS: true,
-                hasJS: true
-            },
-                {
-                    name: 'container',
-                    class: 'bl-container',
-                    type:'block',
-                    hasCSS: true,
-                    hasJS: false,
-                    content: [
-                        {
-                            name: 'content',
-                            type: 'block',
-                            class: 'bl-content',
-                            hasCSS: true,
-                            hasJS: true
-                        }
-                    ]
-                },
-                {
-                    name: 'footer',
-                    type: 'footer',
-                    class: 'bl-footer',
-                    hasCSS: true,
-                    hasJS: false
-                }]
         }
     ];
     return pages;
@@ -110,20 +52,11 @@ function generateQuestions() {
         {q: 'Е-mail', a: 'емайл@уамршра'},
         {q: 'Телефон', a: '984654156'}
     ];
-    function compileQuestion(question, position) {
-        this.name = 'question';
-        this.class = 'bl-question',
-        this.type = 'block',
-        this.hasCSS = true,
-        this.hasJS = true,
-        this.options = {
-            id: 'question' + (+i + 1),
-            question: {q: question.q, a: question.a}
-        };
-    }
     for (i in questions) {
-
-        var compiledQuestion = new compileQuestion(questions[i], i);
+        var compiledQuestion = new Block('question', 1, 1, {
+            id: 'question' + (+i + 1),
+            question: {q: questions[i].q, a: questions[i].a}
+        });
         compiledQuestions.push(compiledQuestion);
     }
     return compiledQuestions;
