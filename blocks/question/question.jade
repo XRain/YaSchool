@@ -1,5 +1,8 @@
-div(class="#{locals.class}", id="#{locals.options.id}")
-  div
-    #{locals.options.question.q}
-  div
-    #{locals.options.question.a}
+li
+  div(class=locals.class + ' ' + locals.options.id)
+    div.question-container
+      p
+        #{locals.options.question.q}
+    div.answer-container
+      p
+        #{locals.options.question.a}

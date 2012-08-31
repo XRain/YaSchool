@@ -61,22 +61,20 @@ function addFile(name, type){
     компиляция и запись клиентских файлов
  */
 function compileContent(scripts, css) {
-    compileAssets();
+    compileCSS();
+    compileJS();
     pageHead = renderHead();
     return pageHead;
 
 
-    function compileAssets() {
+    function compileCSS() {
         var build = ams.build.create(blocksPath);
-        for (script in scripts) {
-            build.add(scripts[script]);
-        }
         for (cssFile in css) {
             build.add(css[cssFile]);
         }
 
         build.process({
-            uglifyjs: true, // minify javascript using uglifyjs
+            uglifyjs: false, // minify javascript using uglifyjs
             cssvendor: false, // add css vendor prefixes like -webkit, -moz etc.
             dataimage: false, // inline small images using data:image base64 encoded data for css and html
             cssimport: true, // parse @import declarations and inline css files
@@ -88,10 +86,31 @@ function compileContent(scripts, css) {
 
         });
         build.combine({
-            js: pageName + '.js',
             css: pageName + '.css'
         });
-        build.write('./pages/assets/');
+        build.write('./pages/assets/css/');
+    }
+    function compileJS() {
+        var build = ams.build.create(blocksPath);
+        for (script in scripts) {
+            build.add(scripts[script]);
+        }
+        build.process({
+            uglifyjs: true, // minify javascript using uglifyjs
+            cssvendor: false, // add css vendor prefixes like -webkit, -moz etc.
+            dataimage: false, // inline small images using data:image base64 encoded data for css and html
+            cssimport: false, // parse @import declarations and inline css files
+            cssabspath: false, // absolutize paths in css files (relative to the root)
+            htmlabspath: false, // absolutize paths in html files (relative to the root)
+            cssmin: true, // minify css using js port of yahoos compressor for css
+            jstransport: false, // wrap javascript code in commonjs transport proposal, can be used with requirejs later
+            texttransport: false // wrap any data into js transport string, f.e. to load html templates using requirejs from cdn
+
+        });
+        build.combine({
+            js: pageName + '.js'
+        });
+        build.write('./pages/assets/js/');
     }
 
 }

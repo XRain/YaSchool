@@ -1,0 +1,29 @@
+.bl-questions {
+
+    background: white;
+    border: black solid 3px;
+    height: 480px;
+    margin: 10px auto;
+    overflow: hidden;
+    position: relative;
+    width: 640px;
+}
+
+.bl-questions .prev, .bl-questions .next {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    width: 40px;
+    opacity: 0.7;
+    z-index: 4;
+    background-color: #00fffa;
+    position: relative;
+}
+
+.bl-questions .prev {
+    float: left;
+}
+
+.bl-questions .next {
+    float: right;
+}

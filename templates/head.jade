@@ -1,8 +1,10 @@
--var cssFileName = 'assets/' + locals.name + '.css';
--var jsFileName = 'assets/' + locals.name + '.js';
+-var cssFileName = 'assets/css/' + locals.name + '.css';
+-var jsFileName = 'assets/js/' + locals.name + '.js';
 
 
 head
   title= "Main"
-  script(type='text/javascript', src="#{jsFileName}")
   link(rel="stylesheet", href="#{cssFileName}")
+  script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
+  script(type="text/javascript", src="assets/js/sequence.jquery-min.js")
+  script(type='text/javascript', src="#{jsFileName}")

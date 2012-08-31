@@ -18,7 +18,7 @@ function checkBlock(block) {
     var blockDir = blocksPath + block.name + '/';
     var blockFiles= [
         {path: blockDir + block.name + '.css', content: '.' + block.class + ' {position: relative}'},
-        {path: blockDir + block.name + '.js', content: 'console.log("script ' + block.name + '.js' + 'loaded successfully");'},
+        {path: blockDir + block.name + '.js', content: 'console.log("script ' + block.name + '.js' + ' loaded successfully");'},
         {path: blockDir + block.name + '.jade', content: 'div(class="#{locals.class}")' + '\r\n  !{locals.content}'}
     ]
     if(!fs.existsSync(blockDir)) {

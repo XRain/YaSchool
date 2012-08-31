@@ -34,7 +34,9 @@ function getPages() {
                 new Head(),
                 new Block('container', 1, 0, {}, [
                         new Block('menu', 1, 1, {}),
-                        new Block('content', 1, 1, {}, generateQuestions())
+                        new Block('content', 1, 0, {}, [
+                            new Block('questions', 1, 1, {}, generateQuestions())
+                        ])
                 ])
             ]
         }

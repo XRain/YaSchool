@@ -1,1 +1,30 @@
-.bl-question {position: relative}
+.bl-question {
+    background: #3f7ad6;
+    color: white;
+    height: 100%;
+    position: absolute;
+    width: 400px;
+    left: -500px;
+    background: #3f7ad6;
+    opacity: 0;
+}
+
+.question1.animate-in,.question2.animate-in,.question3.animate-in {
+    left: 120px;
+    opacity: 1;
+    -webkit-transition-duration: 0.7s;
+    -moz-transition-duration: 0.7s;
+    -o-transition-duration: 0.7s;
+    -ms-transition-duration: 0.7s;
+    transition-duration: 0.7s;
+}
+
+.question1.animate-out,.question2.animate-out,.question3.animate-out {
+    left: 800px;
+    opacity: 0;
+    -webkit-transition-duration: 0.7s;
+    -moz-transition-duration: 0.7s;
+    -o-transition-duration: 0.7s;
+    -ms-transition-duration: 0.7s;
+    transition-duration: 0.7s;
+}
