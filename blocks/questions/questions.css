@@ -6,6 +6,7 @@
     margin: 10px auto;
     overflow: hidden;
     position: relative;
+    top: 200px;
     width: 640px;
 }
 
@@ -26,4 +27,12 @@
 
 .bl-questions .next {
     float: right;
+}
+
+.bl-questions__switchUp {
+    display: block;
+    height: 90px;
+    width: 90px;
+    margin: 0 auto;
+    background-color: #ff4f98;
 }

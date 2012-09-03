@@ -1,8 +1,7 @@
-li
-  div(class=locals.class + ' ' + locals.options.id)
-    div.question-container
-      p
-        #{locals.options.question.q}
-    div.answer-container
-      p
-        #{locals.options.question.a}
+div(class=locals.class, id = locals.options.id)
+  div.bl-question__question-container
+    p
+      #{locals.options.question.q}
+  div.bl-question__answer-container
+    p
+      #{locals.options.question.a}

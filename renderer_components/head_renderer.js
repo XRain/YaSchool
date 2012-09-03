@@ -120,12 +120,8 @@ function compileContent(scripts, css) {
 function parseTreeEntry(currentBlock) {
     if(currentBlock.hasOwnProperty('name') && currentBlock.type == 'block') {
         //(!!debug)?console.log('processing head') : null;
-        if (!!currentBlock.hasCSS) {
-            addFile(currentBlock.name, 'css');
-        }
-        if (!!currentBlock.hasJS) {
-            addFile(currentBlock.name, 'js');
-        }
+        addFile(currentBlock.name, 'css');
+        addFile(currentBlock.name, 'js');
         if (!!currentBlock.content) {
             for(block in currentBlock.content) {
                 parseTreeEntry(currentBlock.content[block]);

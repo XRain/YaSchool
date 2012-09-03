@@ -1,0 +1,18 @@
+.bl-intro {
+    display: block;
+    background: white;
+    border: black solid 3px;
+    height: 480px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: 640px;
+}
+
+.bl-intro__switchDown {
+    display: block;
+    height: 90px;
+    width: 90px;
+    margin: 10px auto;
+    background-color: #ff8319;
+}

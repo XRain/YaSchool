@@ -7,13 +7,11 @@
  */
 
 
-var Block = function(name, hasCSS, hasJS, options, content) {
+var Block = function(name, options, content) {
     this.type = 'block';
 
     this.name = name;
     this.class =  'bl-' + name;
-    this.hasCSS = !!hasCSS;
-    this.hasJS = !!hasJS;
     this.options = options;
     if(!!content) {
         this.content = content;
@@ -32,10 +30,10 @@ function getPages() {
             pageName: 'index',
             bem_tree: [
                 new Head(),
-                new Block('container', 1, 0, {}, [
-                        new Block('menu', 1, 1, {}),
-                        new Block('content', 1, 0, {}, [
-                            new Block('questions', 1, 1, {}, generateQuestions())
+                new Block('container', {}, [
+                        new Block('content', {}, [
+                            new Block('intro', {}),
+                            new Block('questions', {}, generateQuestions())
                         ])
                 ])
             ]
@@ -44,7 +42,8 @@ function getPages() {
     return pages;
 }
 
-/*Генераторы контента для блоков
+/*
+Генераторы контента для блоков
 
  */
 function generateQuestions() {
@@ -55,8 +54,8 @@ function generateQuestions() {
         {q: 'Телефон', a: '984654156'}
     ];
     for (i in questions) {
-        var compiledQuestion = new Block('question', 1, 1, {
-            id: 'question' + (+i + 1),
+        var compiledQuestion = new Block('question', {
+            id: 'question' + (+i),
             question: {q: questions[i].q, a: questions[i].a}
         });
         compiledQuestions.push(compiledQuestion);
