@@ -30,10 +30,10 @@ $(document).ready(function(){
     });
     //переключатели "вопрос-ответ"
     $('.bl-question__question-container').on('click', function(e) {
-        toggleFadeOut($('#question' + activeQuestionIndex).find('.bl-question__answer-container'), e.target);
+        toggleFadeOut($('#question' + activeQuestionIndex).find('.bl-question__answer-container'), $('#question' + activeQuestionIndex).find('.bl-question__question-container'));
     });
     $('.bl-question__answer-container').on('click', function(e) {
-        toggleFadeOut($('#question' + activeQuestionIndex).find('.bl-question__question-container'), e.target);
+        toggleFadeOut($('#question' + activeQuestionIndex).find('.bl-question__question-container'), $('#question' + activeQuestionIndex).find('.bl-question__answer-container'));
     })
 });
 
