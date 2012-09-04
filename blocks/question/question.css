@@ -1,10 +1,11 @@
 .bl-question {
+    cursor: pointer;
     background: #3f7ad6;
     color: white;
     height: 100%;
     position: absolute;
     width: 400px;
-    left: -500px;
+    left: 800px;
     opacity: 0;
 }
 

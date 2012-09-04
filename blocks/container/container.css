@@ -36,9 +36,8 @@ abbr,acronym { border:0;
     font-family: Calibri, Arial, san-serif;
     background-color: gray;
     background-image: url("../img/background.jpg");
-
     border-top: 0 solid black;
-    height: 840px;
+    height: 700px;
     overflow: hidden;
     position: relative;
 }

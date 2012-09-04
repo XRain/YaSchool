@@ -15,16 +15,16 @@ $(document).ready(function(){
     $('.next').on('click', function() {
         nextIndex = activeQuestionIndex + 1;
         if (!!allQuestions[nextIndex]) {
-            $('#question' + (activeQuestionIndex)).removeClass('bl-question__animate-in').addClass('bl-question__animate-right');
-            $('#question' + (nextIndex)).removeClass('bl-question__animate-left').addClass('bl-question__animate-in');
+            $('#question' + (activeQuestionIndex)).removeClass('bl-question__animate-in').addClass('bl-question__animate-left');
+            $('#question' + (nextIndex)).removeClass('bl-question__animate-right').addClass('bl-question__animate-in');
             activeQuestionIndex = nextIndex;
         }
     });
     $('.prev').on('click', function() {
         nextIndex = activeQuestionIndex - 1;
         if (!!allQuestions[nextIndex]) {
-            $('#question' + (activeQuestionIndex)).removeClass('bl-question__animate-in').addClass('bl-question__animate-left');
-            $('#question' + (nextIndex)).removeClass('bl-question__animate-right').addClass('bl-question__animate-in');
+            $('#question' + (activeQuestionIndex)).removeClass('bl-question__animate-in').addClass('bl-question__animate-right');
+            $('#question' + (nextIndex)).removeClass('bl-question__animate-left').addClass('bl-question__animate-in');
             activeQuestionIndex = nextIndex;
         }
     });

@@ -6,6 +6,7 @@
     margin: 0 auto;
     overflow: hidden;
     position: relative;
+    top: 100px;
     width: 640px;
 }
 
@@ -13,6 +14,8 @@
     display: block;
     height: 90px;
     width: 90px;
-    margin: 10px auto;
+    position: relative;
+    top: 100px;
+    margin: 0 auto;
     background-color: #ff8319;
 }
