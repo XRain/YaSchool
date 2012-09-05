@@ -16,6 +16,12 @@ $(document).ready(function(){
     //переключение вопросов
     $('.bl-questions__next').on('click', function() {
         nextIndex = activeQuestionIndex + 1;
+        if(nextIndex == 1) {
+            $('.bl-questions__prev').fadeIn(fadeSpeed);
+        }
+        if(nextIndex == allQuestions.length -1) {
+            $(this).fadeOut(fadeSpeed);
+        }
         if (!!allQuestions[nextIndex]) {
             $('#question' + (activeQuestionIndex)).removeClass('bl-question__animate-in').addClass('bl-question__animate-left');
             $('#question' + (nextIndex)).removeClass('bl-question__animate-right').addClass('bl-question__animate-in');
@@ -24,6 +30,12 @@ $(document).ready(function(){
     });
     $('.bl-questions__prev').on('click', function() {
         nextIndex = activeQuestionIndex - 1;
+        if(nextIndex == allQuestions.length -2) {
+            $('.bl-questions__next').fadeIn(fadeSpeed);
+        }
+        if(nextIndex == 0) {
+            $(this).fadeOut(fadeSpeed);
+        }
         if (!!allQuestions[nextIndex]) {
             $('#question' + (activeQuestionIndex)).removeClass('bl-question__animate-in').addClass('bl-question__animate-right');
             $('#question' + (nextIndex)).removeClass('bl-question__animate-left').addClass('bl-question__animate-in');

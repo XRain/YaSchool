@@ -1,12 +1,22 @@
 .bl-questions {
-    background: white;
-    border: black solid 3px;
+    background: #2E3742;
+    border: #c87a13 solid 4px;
     height: 480px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
     top: 125px;
     width: 720px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #f9f2dc;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    -webkit-box-shadow: inset 1px 1px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 1px 1px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.bl-questions:hover {
+    border: #ba9c34 solid 4px;
 }
 
 .bl-questions__prev, .bl-questions__next {
@@ -16,20 +26,21 @@
     width: 90px;
     opacity: 0.85;
     z-index: 4;
-    position: relative;
-    top: 310px;
+    position: absolute;
+    top: 970px;
 }
 
 .bl-questions__prev {
     float: left;
     background: url("../img/arrow-left.png");
     left: 180px;
+    display: none;
 }
 
 .bl-questions__next {
     float: right;
     background: url("../img/arrow-right.png");
-    left: -180px;
+    left: 1010px;
 }
 
 .bl-questions__prev:hover {

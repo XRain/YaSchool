@@ -1,13 +1,45 @@
 .bl-intro {
     display: block;
-    background: white;
-    border: black solid 3px;
+    background: #2E3742;
+    border: #c87a13 solid 4px;
     height: 480px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
     top: 100px;
-    width: 640px;
+    width: 700px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #f9f2dc;
+    font-size: 2.1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    -webkit-box-shadow: inset 1px 1px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 1px 1px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.bl-intro:hover {
+    border: #ba9c34 solid 4px;
+}
+
+.bl-intro h1::first-letter {
+    Color: #ba9c34;
+}
+
+.bl-intro p {
+    display: block;
+    margin: 0 10px 0 20px;
+}
+
+.bl-intro li {
+    margin-left: 55px;
+    list-style-type: disc;
+}
+
+.bl-intro h1 {
+    margin: 5%;
+    font-size: 2.1em;
+    font-weight: 400;
+    color: #009028;
 }
 
 .bl-intro__switchDown {

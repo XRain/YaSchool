@@ -6,25 +6,31 @@
     left: 800px;
 }
 
-
-
-
 .bl-question__question-container, .bl-question__answer-container {
     display: table;
     position: absolute;
     height: 100%;
     width: 100%;
-    line-height: 1,6em;
     font-family: Georgia, "Times New Roman", Times, serif;
     color: #24262f;
 }
 
 .bl-question__question-container {
     font-size: 2.1em;
+    font-weight: 400;
+    color: #009028;
+    background: url("../img/q-background.png");
+}
+
+.bl-question__question-container p::first-letter {
+    Color: #ba9c34;
 }
 
 .bl-question__answer-container {
-    font-size: 1.6em;
+    font-size: 1.9em;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    color: #F9F2DC;
+    background: url("../img/a-background.png");
 }
 
 
