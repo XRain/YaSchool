@@ -10,9 +10,11 @@ $(document).ready(function(){
     //и показываем первый из них
     $('#question' + (activeQuestionIndex)).addClass('bl-question__animate-in');
 
+    $('.bl-question__answer-container').css('display', 'none');
+
 //развешиваем обработчики
     //переключение вопросов
-    $('.next').on('click', function() {
+    $('.bl-questions__next').on('click', function() {
         nextIndex = activeQuestionIndex + 1;
         if (!!allQuestions[nextIndex]) {
             $('#question' + (activeQuestionIndex)).removeClass('bl-question__animate-in').addClass('bl-question__animate-left');
@@ -20,7 +22,7 @@ $(document).ready(function(){
             activeQuestionIndex = nextIndex;
         }
     });
-    $('.prev').on('click', function() {
+    $('.bl-questions__prev').on('click', function() {
         nextIndex = activeQuestionIndex - 1;
         if (!!allQuestions[nextIndex]) {
             $('#question' + (activeQuestionIndex)).removeClass('bl-question__animate-in').addClass('bl-question__animate-right');
@@ -28,6 +30,9 @@ $(document).ready(function(){
             activeQuestionIndex = nextIndex;
         }
     });
+
+
+
     //переключатели "вопрос-ответ"
     $('.bl-question__question-container').on('click', function(e) {
         toggleFadeOut($('#question' + activeQuestionIndex).find('.bl-question__answer-container'), $('#question' + activeQuestionIndex).find('.bl-question__question-container'));
@@ -41,10 +46,10 @@ $(document).ready(function(){
 
 function toggleFadeOut(objIn, objOut) {
     $(objOut).fadeOut(fadeSpeed, function() {
-        $(this).css('display', 'none');
+        //$(this).css('display', 'none');
     });
     $(objIn).fadeIn(fadeSpeed, function() {
-        $(this).css('display', 'block');
+       // $(this).css('display', 'block');
     });
 
 }

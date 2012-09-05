@@ -13,9 +13,14 @@
 .bl-intro__switchDown {
     display: block;
     height: 90px;
-    width: 90px;
+    width: 130px;
+    opacity: 0.85;
     position: relative;
     top: 100px;
     margin: 0 auto;
-    background-color: #ff8319;
+    background: url("../img/arrow-down.png");
+}
+
+.bl-intro__switchDown:hover {
+    background: url("../img/arrow-down-hover.png");
 }

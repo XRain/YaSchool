@@ -1,32 +1,46 @@
 .bl-question {
-    cursor: pointer;
-    background: #3f7ad6;
-    color: white;
     height: 100%;
+    cursor: pointer;
     position: absolute;
-    width: 400px;
+    width: 600px;
     left: 800px;
-    opacity: 0;
 }
 
 
-.bl-question__question-container {
-    display: block;
+
+
+.bl-question__question-container, .bl-question__answer-container {
+    display: table;
+    position: absolute;
     height: 100%;
-    background: #3f7ad6;
+    width: 100%;
+    line-height: 1,6em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #24262f;
+}
+
+.bl-question__question-container {
+    font-size: 2.1em;
 }
 
 .bl-question__answer-container {
-    display: block;
-    height: 100%;
-    display: none;
-    background: #00d615;
+    font-size: 1.6em;
 }
 
 
+.bl-question__wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.bl-question p {
+    display: block;
+}
+
 
 .bl-question__animate-in {
-    left: 120px;
+    left: 76px;
     opacity: 1;
     -webkit-transition-duration: 0.7s;
     -moz-transition-duration: 0.7s;

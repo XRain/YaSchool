@@ -1,5 +1,4 @@
 .bl-questions {
-    font-size: 1.6em;
     background: white;
     border: black solid 3px;
     height: 480px;
@@ -7,34 +6,56 @@
     overflow: hidden;
     position: relative;
     top: 125px;
-    width: 640px;
+    width: 720px;
 }
 
-.bl-questions .prev, .bl-questions .next {
+.bl-questions__prev, .bl-questions__next {
     cursor: pointer;
     display: block;
-    height: 100%;
-    width: 40px;
-    opacity: 0.7;
+    height: 130px;
+    width: 90px;
+    opacity: 0.85;
     z-index: 4;
-    background-color: #00fffa;
     position: relative;
+    top: 310px;
 }
 
-.bl-questions .prev {
+.bl-questions__prev {
     float: left;
+    background: url("../img/arrow-left.png");
+    left: 180px;
 }
 
-.bl-questions .next {
+.bl-questions__next {
     float: right;
+    background: url("../img/arrow-right.png");
+    left: -180px;
 }
+
+.bl-questions__prev:hover {
+    background: url("../img/arrow-left-hover.png");
+}
+
+.bl-questions__next:hover {
+    background: url("../img/arrow-right-hover.png");
+}
+
+
+
+
 
 .bl-questions__switchUp {
     display: block;
     height: 90px;
-    width: 90px;
+    width: 130px;
     position: relative;
     top: 125px;
+    opacity: 0.85;
     margin: 0 auto;
-    background-color: #ff4f98;
+    background: url("../img/arrow-up.png");
 }
+
+.bl-questions__switchUp:hover {
+    background: url("../img/arrow-up-hover.png");
+}
+
